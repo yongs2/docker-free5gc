@@ -42,5 +42,16 @@ COPY --from=builder /go/src/free5gc/src/upf/build/bin/* ./
 RUN mkdir config/
 COPY --from=builder /go/src/free5gc/config/* ./config/
 COPY --from=builder /go/src/free5gc/src/upf/build/config/* ./config/
+RUN mkdir -p support/TLS
+COPY --from=builder /go/src/free5gc/support/TLS/* ./support/TLS/
+
+ENV LD_LIBRARY_PATH=
+COPY --from=builder /go/src/free5gc/src/upf/build/libgtpnl/lib/libgtpnl.so* /lib/x86_64-linux-gnu/
+COPY --from=builder  /go/src/free5gc/src/upf/build/utlt_logger/liblogger.so /lib/x86_64-linux-gnu/
+
+RUN DEBIAND_FRONTEND=noninteractive apt-get -y update \
+    && apt-get install -y \
+    libmnl0 \
+	libyaml-0-2
 
 CMD [ "/bin/bash" ]
