@@ -1,6 +1,7 @@
-version: "3.7"
+version: "3.3"
 services:
   mongodb:
+    network_mode: host
     image: mongo:4.2
     container_name: free5gc-mongodb
     deploy:
@@ -11,7 +12,8 @@ services:
         window: 120s
   
   amf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-amf
     deploy:
       restart_policy:
@@ -23,7 +25,8 @@ services:
       - ./amf
 
   smf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-smf
     deploy:
       restart_policy:
@@ -35,7 +38,8 @@ services:
       - ./smf
 
   pcf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-pcf
     deploy:
       restart_policy:
@@ -47,7 +51,8 @@ services:
       - ./pcf
 
   ausf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-ausf
     deploy:
       restart_policy:
@@ -59,7 +64,8 @@ services:
       - ./ausf
 
   nrf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-nrf
     deploy:
       restart_policy:
@@ -70,8 +76,9 @@ services:
     entrypoint:
       - ./nrf
 
-  nssf:
-    image: free5gc-v2
+  nssf: 
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-nssf
     deploy:
       restart_policy:
@@ -83,7 +90,8 @@ services:
       - ./nssf
 
   udm:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-udm
     deploy:
       restart_policy:
@@ -95,7 +103,8 @@ services:
       - ./udm
 
   udr:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-udr
     deploy:
       restart_policy:
@@ -107,7 +116,8 @@ services:
       - ./udr
 
   upf:
-    image: free5gc-v2
+    network_mode: host
+    image: free5gc-v2:latest
     container_name: free5gc-upf
     deploy:
       restart_policy:
@@ -116,4 +126,4 @@ services:
         max_attempts: 3
         window: 120s
     entrypoint:
-      - ./upf
+      - ./free5gc-upfd
