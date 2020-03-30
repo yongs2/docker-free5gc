@@ -1,0 +1,62 @@
+# nrf 서버 테스트
+@hostname = 192.168.5.80
+@port = 29510
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+###
+# 1. NRF
+# 1.1 NFDiscovery Service - SMF
+# @name 1_1_SearchNFInstances_for_SMF
+GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=SMF&requester-nf-type=NEF
+
+###
+# @name 1_1_SearchNFInstances_for_UDM
+# 1.1 NFDiscovery Service - UDM
+GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=UDM&requester-nf-type=NEF
+
+###
+# @name 1_1_SearchNFInstances_for_AMF
+# 1.1 NFDiscovery Service - AMF
+GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=AMF&requester-nf-type=NEF
+
+###
+# @name 1_1_SearchNFInstances_for_PCF
+# 1.1 NFDiscovery Service - AMF
+GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=PCF&requester-nf-type=NEF
+
+###
+# 1. NRF
+# 1.2. NRF NFManagement Service
+# @name 1_2_GetNFInstances
+#
+GET https://{{host}}/nnrf-nfm/v1/nf-instances HTTP/1.1
+content-type: {{contentType}}
+
+###
+# 1. NRF
+# 1.3. NRF NFManagement Service
+# @name 1_3_GetNFInstances_with_nfInstanceId_SMF
+@nfInstanceId_SMF = {{1_1_SearchNFInstances_for_SMF.response.body.nfInstances[0].nfInstanceId}}
+GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_SMF}} HTTP/1.1
+
+###
+# 1. NRF
+# 1.3. NRF NFManagement Service
+# @name 1_3_GetNFInstances_with_nfInstanceId_UDM
+@nfInstanceId_UDM = {{1_1_SearchNFInstances_for_UDM.response.body.nfInstances[0].nfInstanceId}}
+GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_UDM}} HTTP/1.1
+
+###
+# 1. NRF
+# 1.3. NRF NFManagement Service
+# @name 1_3_GetNFInstances_with_nfInstanceId_AMF
+@nfInstanceId_AMF = {{1_1_SearchNFInstances_for_AMF.response.body.nfInstances[0].nfInstanceId}}
+GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_AMF}} HTTP/1.1
+
+###
+# 1. NRF
+# 1.3. NRF NFManagement Service
+# @name 1_3_GetNFInstances_with_nfInstanceId_PCF
+@nfInstanceId_PCF = {{1_1_SearchNFInstances_for_PCF.response.body.nfInstances[0].nfInstanceId}}
+GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_PCF}} HTTP/1.1
