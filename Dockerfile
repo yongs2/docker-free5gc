@@ -23,6 +23,9 @@ RUN cd $GOPATH/src \
     && ./install_env.sh \
     && tar -C $GOPATH -zxvf free5gc_libs.tar.gz
 
+# fix typo
+RUN find src/udm -type f -print0 | xargs -0 sed -i "s/Adrr/Addr/g"
+
 # Build Control Plane entities (AMF,AUSF,NRF,NSSF,PCF,SMF,UDM,UDR)
 RUN cd $GOPATH/src/free5gc/src \
     && for d in * ; do if [ -f "$d/$d.go" ] ; then go build -o ../bin/"$d" -x "$d/$d.go" ; fi ; done ;
@@ -34,14 +37,33 @@ RUN cd $GOPATH/src/free5gc/src/upf \
     && cmake .. \
     && make -j `nproc`
 
+# Build webconsole
+RUN cd $GOPATH/src/free5gc/webconsole \
+    && go build -o ./webconsole ;
+
 FROM ubuntu:18.04
 
 WORKDIR /root/free5gc
 COPY --from=builder /go/src/free5gc/bin/* ./
 COPY --from=builder /go/src/free5gc/src/upf/build/bin/* ./
+
+RUN mkdir webconsole
+COPY --from=builder /go/src/free5gc/webconsole/* ./webconsole/
+RUN apt-get update \
+    && apt-get -y install curl gnupg \
+    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get -y update \
+    && apt-get -y install yarn \
+    && cd webconsole \
+    && yarn install
+ADD run_webui.sh /root/free5gc
+RUN chmod +x /root/free5gc/run_webui.sh
+
 RUN mkdir config/
 COPY --from=builder /go/src/free5gc/config/* ./config/
 COPY --from=builder /go/src/free5gc/src/upf/build/config/* ./config/
+
 RUN mkdir -p support/TLS
 COPY --from=builder /go/src/free5gc/support/TLS/* ./support/TLS/
 
