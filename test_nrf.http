@@ -60,3 +60,15 @@ GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_AMF}} HTTP/1.1
 # @name 1_3_GetNFInstances_with_nfInstanceId_PCF
 @nfInstanceId_PCF = {{1_1_SearchNFInstances_for_PCF.response.body.nfInstances[0].nfInstanceId}}
 GET https://{{host}}/nnrf-nfm/v1/nf-instances/{{nfInstanceId_PCF}} HTTP/1.1
+
+###
+# 1. NRF
+# 1.4 NRF OAuth2 Authorization
+# https://jwt.io/, issuer=1234567, secret=NRF
+# @name 1_4_AccessTokenRequest_SMF
+POST https://{{host}}/oauth2/token HTTP/1.1
+content-type: application/x-www-form-urlencoded
+cache-control: no-store
+pragma: no-cache
+
+grant_type=client_credentials&nfInstanceId={{nfInstanceId_SMF}}&scope=nsmf-pdusession
