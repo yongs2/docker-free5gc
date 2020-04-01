@@ -1,0 +1,356 @@
+# udm 서버 테스트
+@hostname = 192.168.5.80
+@port = 29503
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_1=imsi-0123456789
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_1}}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_2=msidn-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_2}}/nssai
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_3=msidn-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_3}}/am-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_4=msidn-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_4}}/smf-select-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_5=imsi-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_5}}/ue-context-in-smf-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_6=imsi-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_6}}/ue-context-in-smsf-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_7=imsi-12345678
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_7}}/trace-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_8=imsi-0123456789
+@plmn_id_8=20893
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_8}}/sm-data?plmn-id={{plmn_id_8}}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_9=imsi-0123456789
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_9}}/sms-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_10=imsi-0123456789
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_10}}/sms-mng-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_11=imsi-0123456789
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_11}}/lcs-privacy-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_12=imsi-0123456789
+GET https://{{host}}/nudm-sdm/v1/{{supi_msidn_12}}/lcs-mo-data
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_13=imsi-0123456789
+POST https://{{host}}/nudm-sdm/v1/{{supi_msidn_13}}/sdm-subscriptions
+content-type: {{contentType}}
+
+{
+    "nfInstanceId" : "TEST_UDM_INSTANCE",
+    "implicitUnsubscribe" : false,
+    "callbackReference" : "http://127.0.0.1:8000/callback",
+    "monitoredResourceUris" : [
+        "http://127.0.0.1:8000/monitoredResourceUris1",
+        "http://127.0.0.1:8000/monitoredResourceUris2"
+    ],
+    "subscriptionId" : "subscriptionId0001"
+}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_msidn_14=imsi-0123456789
+@subscriptionId_14=subscriptionId0001
+DELETE https://{{host}}/nudm-sdm/v1/{{supi_msidn_14}}/sdm-subscriptions/{{subscriptionId_14}}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@ueIdentity_15=imsi-208930000000003
+GET https://{{host}}/nudm-sdm/v1/{{ueIdentity_15}}/id-translation-result
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_16=imsi-208930000000003
+PUT https://{{host}}/nudm-sdm/v1/{{supi_16}}/am-data/sor-ack
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_17=imsi-208930000000003
+PUT https://{{host}}/nudm-sdm/v1/{{supi_17}}/am-data/upu-ack
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_18=imsi-208930000000003
+PUT https://{{host}}/nudm-sdm/v1/{{supi_18}}/am-data/subscribed-snssais-ack
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@supi_19=imsi-208930000000003
+PUT https://{{host}}/nudm-sdm/v1/{{supi_19}}/am-data/cag-ack
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@SharedDataId_20=12345
+GET https://{{host}}/nudm-sdm/v1/shared-data?shared-data-ids=value1,value2
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+POST https://{{host}}/nudm-sdm/v1/shared-data-subscriptions
+content-type: {{contentType}}
+
+{
+    "nfInstanceId" : "TEST_UDM_INSTANCE",
+    "implicitUnsubscribe" : false,
+    "callbackReference" : "http://127.0.0.1:8000/callback",
+    "monitoredResourceUris" : [
+        "http://127.0.0.1:8000/monitoredResourceUris1",
+        "http://127.0.0.1:8000/monitoredResourceUris2"
+    ],
+    "subscriptionId" : "subscriptionId0001"
+}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@subscriptionId_22=subscriptionId0001
+DELETE https://{{host}}/nudm-sdm/v1/shared-data-subscriptions/{{subscriptionId_14}}
+
+###
+# 5.2 Nudm_SubscriberDataManagement
+# @name 5_2_Nudm_SubscriberDataManagement
+@ext_group_id_23=extgroupid001
+GET https://{{host}}/nudm-sdm/v1/group-data/group-identifiers?ext-group-id={{ext_group_id_23}}
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_24=imsi-208930000000003
+GET https://{{host}}/nudm-uecm/v1/{{supi_24}}/registrations/amf-3gpp-access
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_25=imsi-208930000000003
+GET https://{{host}}/nudm-uecm/v1/{{supi_25}}/registrations/amf-non-3gpp-access
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@var_supi_26=imsi-208930000000003
+GET https://{{host}}/nudm-uecm/v1/{{var_supi_26}}/registrations/smf-registrations
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_27=imsi-208930000000003
+@pduSessionId_27=127
+DELETE https://{{host}}/nudm-uecm/v1/{{supi_27}}/registrations/smf-registrations/{{pduSessionId_27}}
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_28=imsi-208930000000003
+GET https://{{host}}/nudm-uecm/v1/{{supi_28}}/registrations/smsf-3gpp-access
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_29=imsi-208930000000003
+GET https://{{host}}/nudm-uecm/v1/{{supi_29}}/registrations/smsf-non-3gpp-access
+
+###
+# 5.3 Nudm_UEContextManagement 
+# @name 5_3_Nudm_UEContextManagement
+@supi_30=imsi-208930000000003
+POST https://{{host}}/nudm-uecm/v1/restore-pcscf
+content-type: {{contentType}}
+
+{
+    "TriggerRequest" : {
+        "supi" : "{{supi_30}}"
+    }
+}
+
+###
+# 5.4 Nudm_UEAuthentication 
+# @name 5_4_Nudm_UEAuthentication
+@supiOrSuci_31=imsi-208930000000003
+POST https://{{host}}/nudm-ueau/v1/{{supiOrSuci_31}}/security-information/generate-auth-data
+content-type: {{contentType}}
+
+{
+    "servingNetworkName" : "5G:mnc001.mcc002.3gppnetwork.org:ABCDEF0123456",
+    "ausfInstanceId" : "AUSF_INSTANCE_ID"
+}
+
+###
+# 5.4 Nudm_UEAuthentication 
+# @name 5_4_Nudm_UEAuthentication
+@supiOrSuci_32=imsi-208930000000003
+GET https://{{host}}/nudm-ueau/v1/{{supiOrSuci_32}}/security-information-rg
+
+###
+# 5.4 Nudm_UEAuthentication 
+# @name 5_4_Nudm_UEAuthentication
+@supi_33=imsi-208930000000003
+POST https://{{host}}/nudm-ueau/v1/{{supi_33}}/auth-events
+content-type: {{contentType}}
+
+{
+    "nfInstanceId" : "AUEVENT_INSTANCE_ID",
+    "success" : true,
+    "timeStamp" : "2020-03-20T11:00:00Z",
+    "authType" : "5G_AKA",
+    "servingNetworkName" : "5G:mnc001.mcc002.3gppnetwork.org:ABCDEF0123456"
+}
+
+###
+# 5.4 Nudm_UEAuthentication 
+# @name 5_4_Nudm_UEAuthentication
+@supi_34=imsi-208930000000003
+POST https://{{host}}/nudm-ueau/v1/{{supi_34}}/hss-security-information/generate-av
+content-type: {{contentType}}
+
+{
+    "hssAuthType" : "EPS_AKA",
+    "numOfRequestedVectors" : 1
+}
+
+###
+# 5.5 Nudm_EventExposure
+# @name 5_5_Nudm_EventExposure
+@ueIdentity_35=msisdn-123456789
+POST https://{{host}}/nudm-ee/v1/{{ueIdentity_35}}/ee-subscriptions
+content-type: {{contentType}}
+
+{
+    "callbackReference" : "http://127.0.0.1/callbackReference",
+    "monitoringConfigurations" : {
+        "http://127.0.0.1/callbackReference" : {
+            "eventType" : "UE_REACHABILITY_FOR_DATA",
+            "immediateFlag" : true
+        }
+    }
+}
+
+###
+# 5.5 Nudm_EventExposure
+# @name 5_5_Nudm_EventExposure
+@ueIdentity_36=msisdn-123456789
+@subscriptionId_36=123456
+DELETE https://{{host}}/nudm-ee/v1/{{ueIdentity_36}}/ee-subscriptions/{{subscriptionId_36}}
+
+###
+# 5.6 Nudm_ParameterProvision
+# @name 5_6_Nudm_ParameterProvision
+@gpsi_37=msisdn-1234567
+PATCH https://{{host}}/nudm-pp/v1/{{gpsi_37}}/pp-data
+content-type: application/merge-patch+json
+
+{
+    "communicationCharacteristics" : {
+        "ppSubsRegTimer" : {
+            "subsRegTimer" : 120,
+            "afInstanceId" : "AF_INSTANCE_ID",
+            "referenceId" : 123
+        },
+        "ppActiveTime" : {
+            "activeTime" : 120,
+            "afInstanceId" : "AF_INSTANCE_ID",
+            "referenceId" : 123
+        }
+    },
+    "expectedUeBehaviourParameters" : {
+        "afInstanceId" : "AF_INSTANCE_ID",
+        "referenceId" : 123
+    },
+    "ecRestriction" : {
+        "afInstanceId" : "AF_INSTANCE_ID",
+        "referenceId" : 123
+    }
+}
+
+###
+# 5.6 Nudm_ParameterProvision
+# @name 5_6_Nudm_ParameterProvision
+@ext_group_id_38=msisdn-1234567
+PUT https://{{host}}/nudm-pp/v1/5g-vn-groups/{{ext_group_id_38}}
+
+{
+    "5gVnGroupData" : {
+        "dnn" : "dnn",
+        "sNssai" : {
+            "sst" : 10,
+            "sd" : "ABCDEF"
+        }
+    }
+}
+
+###
+# 5.7 Nudm_NIDDAuthorization
+# @name 5_7_Nudm_NIDDAuthorization
+@ueIdentity_39=msisdn-1234567890
+POST https://{{host}}/nudm-niddau/v1/{{ueIdentity_39}}/authorize
+content-type: {{contentType}}
+
+{
+    "snssai" : {
+        "sst": 10,
+        "sd" : "AFAFAF"
+    },
+    "dnn" : "dnnstring",
+    "mtcProviderInformation" : "mtcProviderInformation",
+    "authUpdateCallbackUri" : "http://127.0.0.1:8080/authUpdateCallbackUri"
+}
+
+###
+# 5.8 Nudm_MT
+# @name 5_8_Nudm_MT
+@supi_40=imsi-208930000000003
+GET https://{{host}}/nudm-mt/v1/{{supi_40}}/tads-info
