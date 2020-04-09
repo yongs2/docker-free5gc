@@ -13,7 +13,7 @@ services:
   
   amf:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-amf
     volumes:
       - ./config:/root/free5gc/config
@@ -28,7 +28,7 @@ services:
 
   smf:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-smf
     volumes:
       - ./config:/root/free5gc/config
@@ -43,7 +43,7 @@ services:
 
   pcf:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-pcf
     volumes:
       - ./config:/root/free5gc/config
@@ -58,7 +58,7 @@ services:
 
   ausf:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-ausf
     volumes:
       - ./config:/root/free5gc/config
@@ -73,7 +73,7 @@ services:
 
   nrf:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-nrf
     volumes:
       - ./config:/root/free5gc/config
@@ -88,7 +88,7 @@ services:
 
   nssf: 
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-nssf
     volumes:
       - ./config:/root/free5gc/config
@@ -103,7 +103,7 @@ services:
 
   udm:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-udm
     volumes:
       - ./config:/root/free5gc/config
@@ -118,7 +118,7 @@ services:
 
   udr:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-udr
     volumes:
       - ./config:/root/free5gc/config
@@ -148,7 +148,7 @@ services:
 
   webconsole:
     network_mode: host
-    image: free5gc-v2:latest
+    image: free5gc-v3:latest
     container_name: free5gc-webconsole
     volumes:
       - ./config:/root/free5gc/config

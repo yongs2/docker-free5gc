@@ -1,6 +1,6 @@
 #MAKEFILE
 
-IMG_NAME := free5gc-v2
+IMG_NAME := free5gc-v3
 IMG_TAG := latest
 REGISTRY_URL=192.168.5.69:5000
 

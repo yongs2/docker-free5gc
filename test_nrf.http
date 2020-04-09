@@ -22,7 +22,7 @@ GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=AMF&requester-nf-t
 
 ###
 # @name 1_1_SearchNFInstances_for_PCF
-# 1.1 NFDiscovery Service - AMF
+# 1.1 NFDiscovery Service - PCF
 GET https://{{host}}/nnrf-disc/v1/nf-instances?target-nf-type=PCF&requester-nf-type=NEF
 
 ###
